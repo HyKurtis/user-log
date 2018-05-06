@@ -1,6 +1,6 @@
-from command.command_result import CommandResult
-from user_manager import UserManager
-from user import User
+from userlog.command.command_result import CommandResult
+from userlog.user_manager import UserManager
+from userlog.user import User
 
 
 class RegisterCommand:

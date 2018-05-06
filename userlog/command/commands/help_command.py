@@ -1,4 +1,4 @@
-from command.command_result import CommandResult
+from userlog.command.command_result import CommandResult
 
 class HelpCommand:
 

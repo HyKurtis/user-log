@@ -1,10 +1,10 @@
-from command.command_result import CommandResult
-from command.commands.help_command import HelpCommand
-from command.commands.register_command import RegisterCommand
-from command.commands.unregister_command import UnregisterCommand
-from command.commands.list_command import ListCommand
-from command.commands.info_command import InfoCommand
-from command.commands.update_command import UpdateCommand
+from userlog.command.command_result import CommandResult
+from userlog.command.commands.help_command import HelpCommand
+from userlog.command.commands.register_command import RegisterCommand
+from userlog.command.commands.unregister_command import UnregisterCommand
+from userlog.command.commands.list_command import ListCommand
+from userlog.command.commands.info_command import InfoCommand
+from userlog.command.commands.update_command import UpdateCommand
 
 
 class CommandManager:
