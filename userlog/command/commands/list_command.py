@@ -1,5 +1,5 @@
 from userlog.command.command_result import CommandResult
-from userlog.user_manager import UserManager
+from userlog.user.user_manager import UserManager
 
 
 class ListCommand:
@@ -21,4 +21,5 @@ class ListCommand:
             print("Users: " + ", ".join(names))
         else:
             print("There are no registered users.")
+
         return CommandResult.success

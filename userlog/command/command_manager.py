@@ -5,6 +5,8 @@ from userlog.command.commands.unregister_command import UnregisterCommand
 from userlog.command.commands.list_command import ListCommand
 from userlog.command.commands.info_command import InfoCommand
 from userlog.command.commands.update_command import UpdateCommand
+from userlog.command.commands.exit_command import ExitCommand
+from userlog.command.commands.save_command import SaveCommand
 
 
 class CommandManager:
@@ -12,17 +14,24 @@ class CommandManager:
     commands = []
 
     def __init__(self):
+        self.loop = True
+
         self._register_command(HelpCommand(self))
         self._register_command(RegisterCommand(self))
         self._register_command(UnregisterCommand(self))
         self._register_command(ListCommand(self))
         self._register_command(InfoCommand(self))
         self._register_command(UpdateCommand(self))
+        self._register_command(ExitCommand(self))
+        self._register_command(SaveCommand(self))
 
-    def _get_command(self, name):
+        self.start_loop()
+
+    @staticmethod
+    def _get_command(name):
         name = str.lower(name)
 
-        for command in self.commands:
+        for command in CommandManager.commands:
             command_name = str.lower(command.name)
 
             if command_name == name:
@@ -40,12 +49,13 @@ class CommandManager:
         if self._get_command(command.name) is None:
             self.commands.append(command)
 
-    def handle_input(self, command_input):
+    @staticmethod
+    def handle_input(command_input):
         strings = str(command_input).split()
 
         if strings:
             name = strings[0]
-            command = self._get_command(name)
+            command = CommandManager._get_command(name)
 
             strings.pop(0)
 
@@ -60,3 +70,10 @@ class CommandManager:
                 return
 
         print("Unknown command. Try 'help'.")
+
+    def start_loop(self):
+        CommandManager.handle_input("help")
+
+        while self.loop:
+            command_input = input("> ")
+            CommandManager.handle_input(command_input)
